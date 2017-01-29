@@ -20,7 +20,12 @@ end
 
 
 ##usual dependencies
-execute "apt-get update" do
-  command "apt-get install libmysqlclient-dev libsqlite3-dev libgmp3-dev build-essential"
+
+package ['libmysqlclient-dev','libsqlite3-dev', 'libgmp3-dev' , 'build-essential'] do
+  action :install
 end
+
+
+
+
 

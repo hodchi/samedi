@@ -19,7 +19,7 @@ service 'nginx' do
   action [ :enable, :start ]
 end
 
-cookbook_file "/tmp/nginxinstall" do
-  source "/files/nginxinstall"
-  mode "777"
+
+execute "nginxinstallstatus" do
+  command "touch /tmp/nginxinstall"
 end

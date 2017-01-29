@@ -19,7 +19,12 @@ service 'nginx' do
   action [ :enable, :start ]
 end
 
-
-execute "nginxinstallstatus" do
-  command "touch /tmp/nginxinstall"
+#reverse proxy config
+cookbook_file '/etc/nginx/sites-available/default' do
+  source 'default'
+  owner 'root'
+  group 'root'
+  mode '0644'
+  action :create
 end
+

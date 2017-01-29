@@ -29,13 +29,17 @@ service 'mysql' do
   action [ :enable, :start ]
 end
 
-##
-#create a mysql database
-#mysql_database 'tracks' do
-#  connection(
-#    :host     => '127.0.0.1',
-#    :username => 'root',
-#    :password => node['tracks']['mysql']['root']
-#  )
-#  action :create
-#end
+
+#äset up db
+execute "create db" do
+sshpass -p root mysql -u root -p -e "CREATE DATABASE tracks; GRANT ALL PRIVILEGES ON tracks.* TO root@localhost IDENTIFIED BY 'root' WITH GRANT OPTION;  "
+
+
+
+##download and unzip tracks
+
+execute "get tracks code" do  
+  command "cd /opt && wget https://github.com/TracksApp/tracks/archive/v2.3.0.zip && unzip v2.3.0.zip && cd tracks* && bundle install --without development test"
+end
+
+

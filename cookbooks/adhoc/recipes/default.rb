@@ -21,7 +21,7 @@ end
 
 ##usual dependencies
 
-package ['libmysqlclient-dev','libsqlite3-dev', 'libgmp3-dev' , 'build-essential'] do
+package ['libmysqlclient-dev','libsqlite3-dev', 'libgmp3-dev' , 'build-essential', 'unzip', 'sshpass'] do
   action :install
 end
 
